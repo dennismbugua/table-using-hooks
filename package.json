@@ -1,0 +1,20 @@
+{
+    "name": "table-using-hooks",
+    "version": "1.0.0",
+    "description": "Add rows with inputs dynamically into a table and handle input changes.",
+    "keywords": [],
+    "homepage": "https://codesandbox.io/s/new",
+    "main": "src/index.js",
+    "dependencies": {
+        "react": "16.8.1",
+        "react-dom": "16.8.1",
+        "reactstrap": "7.1.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    }
+}
