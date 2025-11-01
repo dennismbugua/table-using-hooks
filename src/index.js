@@ -76,48 +76,40 @@ function App() {
 
   return (
     <div className="app" role="main">
-      <div className="header">
-        <div className="title">
-          <div className="logo">TB</div>
-          <div>
-            <h1>Contacts table</h1>
-            <div className="subtitle">
-              Fast editable rows — keyboard and mobile friendly
+      <div className="card">
+        <div className="header">
+          <div className="title">
+            <div className="logo">TB</div>
+            <div>
+              <h1>Contacts Table</h1>
+              <div className="subtitle">⚡ Fast editable rows — keyboard and mobile friendly</div>
             </div>
           </div>
+          <div className="controls">
+            <input
+              aria-label="Filter rows"
+              className="input"
+              placeholder="🔍 Search name or mobile..."
+              value={filter}
+              onChange={e => setFilter(e.target.value)}
+              style={{ width: 240 }}
+              autoComplete="off"
+            />
+            <button className="btn primary" onClick={handleAddRow} title="Add Row">
+              ➕ Add Row
+            </button>
+            <button
+              className="btn danger"
+              onClick={handleRemoveLast}
+              title="Delete last row"
+              aria-label="Delete last row"
+            >
+              🗑️ Delete Last
+            </button>
+          </div>
         </div>
-        <div className="controls">
-          <input
-            aria-label="Filter rows"
-            className="input"
-            placeholder="Search name or mobile..."
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            style={{ width: 220 }}
-          />
-          <button
-            className="btn primary"
-            onClick={handleAddRow}
-            title="Add Row"
-          >
-            + Add Row
-          </button>
-          <button
-            className="btn danger"
-            onClick={handleRemoveLast}
-            title="Delete last row"
-            aria-label="Delete last row"
-          >
-            Delete Last
-          </button>
-        </div>
-      </div>
 
-      <div
-        className="tableWrap"
-        role="region"
-        aria-label="Editable contacts table"
-      >
+        <div className="tableWrap" role="region" aria-label="Editable contacts table">
         <table>
           <thead>
             <tr>
@@ -147,6 +139,7 @@ function App() {
                       onChange={handleChange(row._i, "name")}
                       placeholder="Full name"
                       aria-label={`Name for row ${row._i + 1}`}
+                      autoComplete="off"
                     />
                   </td>
                   <td>
@@ -158,6 +151,7 @@ function App() {
                       placeholder="Mobile number"
                       aria-invalid={!validMobile(rows[row._i].mobile)}
                       aria-label={`Mobile for row ${row._i + 1}`}
+                      autoComplete="off"
                     />
                     <div className="small" style={{ marginTop: 6 }}>
                       {rows[row._i].mobile &&
@@ -174,20 +168,20 @@ function App() {
                   </td>
                   <td className="actions">
                     <button
-                      className="btn"
+                      className="btn small"
                       onClick={handleInsertAt(row._i)}
                       aria-label={`Add row after ${row._i + 1}`}
                       title="Insert row below"
                     >
-                      Add
+                      ➕ Add
                     </button>
                     <button
-                      className="btn"
+                      className="btn small"
                       onClick={handleRemoveAt(row._i)}
                       aria-label={`Remove row ${row._i + 1}`}
                       title="Remove row"
                     >
-                      Remove
+                      ❌ Remove
                     </button>
                   </td>
                 </tr>
@@ -198,8 +192,10 @@ function App() {
       </div>
 
       <div className="hint">
-        <span className="rowCount">{rows.length}</span> rows • Changes are saved
-        to local storage automatically
+        <div className="statusIndicator"></div>
+        <span className="rowCount">{rows.length}</span> {rows.length === 1 ? 'row' : 'rows'} • 
+        <span style={{marginLeft: 6}}>Changes saved automatically to local storage</span>
+      </div>
       </div>
     </div>
   );
